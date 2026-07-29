@@ -32,5 +32,5 @@ server:
 # Security
 api:
   security:
-    key: my-secret-api-key-2024
+    key: my-secret-api-key-2026
 

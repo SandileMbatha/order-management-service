@@ -59,7 +59,7 @@ Open **http://localhost:8080/h2-console**
 All API endpoints require an API key via the `X-API-Key` header:
 
 ```
-X-API-Key: my-secret-api-key-2024
+X-API-Key: my-secret-api-key-2026
 ```
 
 Swagger UI and H2 console are publicly accessible without authentication.
@@ -84,7 +84,7 @@ Swagger UI and H2 console are publicly accessible without authentication.
 ```bash
 curl -X POST http://localhost:8080/api/products \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: my-secret-api-key-2024" \
+  -H "X-API-Key: my-secret-api-key-2026" \
   -d '{"name": "Laptop", "description": "A powerful laptop", "price": 999.99}'
 ```
 
@@ -92,7 +92,7 @@ curl -X POST http://localhost:8080/api/products \
 ```bash
 curl -X POST http://localhost:8080/api/orders \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: my-secret-api-key-2024" \
+  -H "X-API-Key: my-secret-api-key-2026" \
   -d '{"items": [{"productId": 1, "quantity": 2}]}'
 ```
 

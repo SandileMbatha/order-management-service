@@ -28,7 +28,7 @@ class OrderControllerIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private static final String API_KEY = "my-secret-api-key-2024";
+    private static final String API_KEY = "my-secret-api-key-2026";
 
     private Long productId;
 
