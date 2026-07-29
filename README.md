@@ -4,7 +4,7 @@ A Spring Boot microservice for managing Products and Orders.
 
 ## Technology Stack
 
-- **Java 21** with **Spring Boot 3.3.2**
+- **Java 21** with **Spring Boot 3.2.5**
 - **H2** in-memory database
 - **Spring Data JPA** for persistence
 - **Spring Security** with API Key authentication
