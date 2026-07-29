@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Global exception handler providing consistent error responses across all endpoints.
  *
  * <p>Maps domain exceptions to appropriate HTTP status codes and returns
- * a structured {@link ApiErrorResponse} body.</p>
+ * a structured {@link ErrorResponse} body.</p>
  */
 @Slf4j
 @RestControllerAdvice
@@ -30,10 +30,10 @@ public class GlobalExceptionHandler {
      * @return a 404 response with error details
      */
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleNotFound(final ResourceNotFoundException ex) {
+    public ResponseEntity<ErrorResponse> handleNotFound(final ResourceNotFoundException ex) {
         log.warn("{}Resource not found: {}", LOG_PREFIX, ex.getMessage());
 
-        final ApiErrorResponse response = ApiErrorResponse.builder()
+        final ErrorResponse response = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.NOT_FOUND.value())
                 .error(HttpStatus.NOT_FOUND.getReasonPhrase())
@@ -50,10 +50,10 @@ public class GlobalExceptionHandler {
      * @return a 400 response with missing product details
      */
     @ExceptionHandler(InvalidOrderException.class)
-    public ResponseEntity<ApiErrorResponse> handleInvalidOrder(final InvalidOrderException ex) {
+    public ResponseEntity<ErrorResponse> handleInvalidOrder(final InvalidOrderException ex) {
         log.warn("{}Invalid order rejected: {}", LOG_PREFIX, ex.getMessage());
 
-        final ApiErrorResponse response = ApiErrorResponse.builder()
+        final ErrorResponse response = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error("Invalid Order")
@@ -71,11 +71,11 @@ public class GlobalExceptionHandler {
      * @return a 400 response with per-field error messages
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidation(final MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleValidation(final MethodArgumentNotValidException ex) {
         final Map<String, String> fieldErrors = ex.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage, (a, b) -> a));
 
-        final ApiErrorResponse response = ApiErrorResponse.builder()
+        final ErrorResponse response = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error("Validation Failed")

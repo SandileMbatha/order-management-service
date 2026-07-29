@@ -16,7 +16,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ApiErrorResponse {
+public class ErrorResponse {
 
     private final LocalDateTime timestamp;
     private final int status;
